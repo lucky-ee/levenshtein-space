@@ -81,3 +81,10 @@ metric-spell-checker/
 ├── .gitignore
 └── README.md
 ```
+
+## Acknowledgements & Sources
+
+* **Levenshtein Distance:** Vladimir Levenshtein (1965). *Binary codes capable of correcting deletions, insertions, and reversals.*
+* **BK-Tree Algorithm:** W. A. Burkhard and R. M. Keller (1973). *Some approaches to best-match file searching*. Communications of the ACM.
+* **Implementation Reference:** [BK-Tree | Introduction & Implementation](https://www.geeksforgeeks.org/dsa/bk-tree-introduction-implementation/) via GeeksforGeeks.
+* **Dictionary Dataset:** Utilizes the standard Unix `/usr/share/dict/words` file (alternatively, the [dwyl/english-words](https://github.com/dwyl/english-words) repository).
