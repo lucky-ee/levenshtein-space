@@ -1,9 +1,9 @@
-import argparse
 import time
 from bktree import BKTree
 
 def levenshtein_distance(s1: str, s2: str) -> int:
-    m, n = len(s1), len(s2)
+    
+    m, n = len(s1), len(s2) 
     dp = [[0] * (n + 1) for _ in range(m + 1)]
     
     for i in range(m + 1):
@@ -25,16 +25,8 @@ def load_dictionary(filepath: str) -> list:
     with open(filepath, 'r', encoding='utf-8') as file:
         return [line.strip().lower() for line in file if line.strip()]
 
-def get_suggestions(target_word: str, dictionary: list, top_n: int = 3) -> list:
-    results = []
-    for word in dictionary:
-        dist = levenshtein_distance(target_word, word)
-        results.append((dist, word))
-    results.sort(key=lambda x: x[0])
-    return results[:top_n]
 
 if __name__ == "__main__":
-    # You can change this path if your dictionary is somewhere else
     dict_path = "/usr/share/dict/words" 
     
     print("Loading dictionary...")
@@ -51,7 +43,7 @@ if __name__ == "__main__":
         
     print("Tree built successfully!\n")
     
-    # --- Interactive Loop ---
+
     while True:
         print("-" * 40)
         word = input("Enter a word to check (or type 'quit' to exit): ").strip().lower()
@@ -62,21 +54,22 @@ if __name__ == "__main__":
         if not word:
             continue
             
-        # Ask for tolerance, default to 2 if they just press Enter
+
         tolerance_input = input("Enter tolerance level (Press Enter for 2): ").strip()
         
         try:
             tolerance = int(tolerance_input) if tolerance_input else 2
+            if tolerance < 0:
+                raise ValueError
         except ValueError:
             print("That wasn't a valid number! Defaulting tolerance to 2.")
             tolerance = 2
             
-        # Run the search
         start_time = time.time()
         tree_matches = tree.search(word, tolerance)
         search_time = (time.time() - start_time) * 1000 
         
-        # Display results
+        
         print(f"\nFound {len(tree_matches)} matches in {search_time:.2f} ms:")
         for dist, match in tree_matches:
             print(f"  -> {match} (Distance: {dist})")
