@@ -6,8 +6,7 @@ class BKNode:
 class BKTree:
     def __init__(self, distance_func):
         self.root = None
-        # We pass the distance function in so the tree doesn't care 
-        # if we use Levenshtein, Hamming, or anything else!
+    
         self.distance_func = distance_func
         
     def add(self, word: str):
